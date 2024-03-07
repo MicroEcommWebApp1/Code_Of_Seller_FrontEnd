@@ -1,14 +1,27 @@
 /* navbar.component.css */
+/* styles.css */
 .navbar {
-    background-color: #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+   
+    padding: 10px 20px;
+}
+
+.logo {
+    width: 70px; /* Adjust width as needed */
+    height: 50px; /* Maintain aspect ratio */
+    background-color: aliceblue;
+}
+
+
+
+.navbar {
+    background-color: #4072ac;
     overflow: hidden;
 }
 
-.navbar img {
-    height: 50px;
-    margin-top: 5px;
-    margin-left: 10px;
-}
+
 
 .navbar a {
     float: left;
