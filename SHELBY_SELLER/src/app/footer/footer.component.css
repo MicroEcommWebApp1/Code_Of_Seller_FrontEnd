@@ -1,8 +1,10 @@
 /* footer.component.css */
 .footer {
-    background-color: #333;
+    background-color: #4072ac;
+    
     color: #fff;
     padding: 20px 0;
+    text-align: center;
 }
 
 .footer p {
