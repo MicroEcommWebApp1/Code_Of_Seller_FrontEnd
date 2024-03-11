@@ -1,37 +1,56 @@
 
- 
-input {
-    display: block;
+
+.register-container {
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+
+    background-image: url('..\..\assets\BG_for_LOGIN.jpg'); 
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    max-width: 300px;
     width: 100%;
-    margin-bottom: 15px;
+    background-color: #093b6a;
+    align-items: center;
+  }
+input {
+    width: 90%;
     padding: 10px;
-    box-sizing: border-box;
-    border: 1px solid #201717;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
     border-radius: 5px;
 }
  
- 
-input:invalid,title{
-    background-color: ivory;
+.register-container input[type="submit"] {
+    width: 100%;
+    padding: 10px;
     border: none;
-    outline: 2px solid red;
     border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
   }
-  input:required:valid {
-    background-color: ivory;
-    border: none;
-    outline: 2px solid rgb(20, 112, 26);
-    border-radius: 5px;
+  .register-container input[type="submit"]:hover {
+    background-color: #0056b3;
   }
-.main {
-    background-color: #4d9ab6;
-    border-radius: 15px;
-    box-shadow: 0 0 20px rgba(209, 205, 205, 0.2);
-    padding: 10px 20px;
-    transition: transform 0.2s;
-    width: 500px;
+  .register-container h2 {
     text-align: center;
-}
+    margin-bottom: 20px;
+   
+  }
+  
+
+
+.main {
+  
+    font-family: Arial, sans-serif;
+    background-image: url('..\..\assets\BG_for_LOGIN.jpg'); 
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;}
  
 h1 {
     color: #0b6d0e;
@@ -63,18 +82,7 @@ select {
     border-radius: 5px;
 }
  
-button {
-    padding: 15px;
-    border-radius: 10px;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    border: none;
-    color: white;
-    cursor: pointer;
-    background-color: #4CAF50;
-    width: 100%;
-    font-size: 16px;
-}
+
  
 .wrap {
     display: flex;
