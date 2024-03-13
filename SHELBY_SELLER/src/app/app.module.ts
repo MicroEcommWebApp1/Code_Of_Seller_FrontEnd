@@ -13,6 +13,10 @@ import { RegisterComponent } from './register/register.component';
 import { Body2Component } from './body2/body2.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 
+import{HttpClientModule} from "@angular/common/http";
+import{ReactiveFormsModule,FormsModule} from '@angular/forms'
+
+
 
 @NgModule({
   declarations: [
@@ -24,12 +28,14 @@ import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.compone
     RegisterComponent,
   
     Body2Component,
-       ForgotpasswordComponent,
+    ForgotpasswordComponent,
     
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
