@@ -5,8 +5,9 @@
     <form action="#"  id="validationCheck" name="validationCheck" method="post">
       <input type="email" name="email" id="email" placeholder="Email ID" required><br>
       <input type="password" name="password" placeholder="Password" pattern="(?=.*\d)(?=.*[a-zA-Z]).{8,}" title="Password must contain at least one number, one alphabet, and minimum 8 characters" required><br>
-      <a routerLink="/forgotpassword" color="darkblue">Forgot Password?</a><br><br>
-      <a routerLink="/register" color="darkblue">New User?Create a New Account?</a><br><br>
+      <div  class="hi">
+      <a routerLink="/forgotpassword" >Forgot Password?</a><br><br>
+      <a routerLink="/register">New User?Create a New Account?</a><br><br></div>
       <input type="submit" value="Login">
     </form>
     

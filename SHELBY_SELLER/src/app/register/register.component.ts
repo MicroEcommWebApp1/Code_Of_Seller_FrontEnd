@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RegisterService } from '../service/register.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -8,31 +9,36 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-  constructor( private registerservice:RegisterService, private fb:FormBuilder){}
 
-  registerSellerForm!: FormGroup; 
+  user = {
+    name: '',
+    emailID: '',
+  
+    companyName:'',
+    gstNumber:'',
+    phoneNumber:'',
+    companyAddress:'',
+    password: '',
+  };
+  constructor( private registerservice:RegisterService, private fb:FormBuilder , private router: Router){}
 
-  ngOnitInit()
-  {
-    this.registerSellerForm=this.fb.group({
-      name:[null,Validators.required],
-      email:[null,[Validators.required,Validators.email]],
-      cname:[null,Validators.required],
-      GSTINNumber:[null,Validators.required],
-      password:[null,Validators.required],
-      address:[null,Validators.required],
-      phoneNumber:[null,Validators.required]
-   })
+  register() {
+    this.registerservice.registerseller(this.user).subscribe(
+      response => {
+        console.log('User registered successfully:', response);
+        
+     
+        this.router.navigate(['/login']); // Redirect to login page
+        alert('Registration successful! Please login with your credentials.');
+      },
+      error => {
+        console.error('Error registering user:', error);
+        // Handle error, show error message, etc.
+      }
+    );
   }
+ 
 
-  registerseller()
-  {
-    console.log(this.registerSellerForm?.value)
-    //this.registerservice.registerseller().subscribe((res)=>{
-     // console.log(res);
-
-  //  })
-  }
   
 
 }

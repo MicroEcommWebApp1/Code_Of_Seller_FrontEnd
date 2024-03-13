@@ -2,18 +2,18 @@
 <div class="main">
     <div class="register-container">
         <h2>REGISTER!!</h2>
-    <form [formGroup]="registerSellerForm" action=""  id="validationCheck" name="validationCheck">
+    <form (ngSubmit)="register()">
        
         <input type="text" id="uname"
             name="uname"
-            placeholder="Enter your User name" required formControlName="name">
+            placeholder="Enter your User name" required [(ngModel)]="user.name">
            
 
 
        
         <input type="email" id="email"
             name="email"
-            placeholder="Enter your email" required formControlName="email">
+            placeholder="Enter your email" required [(ngModel)]="user.emailID">
 <!--
         <label for="dob">Date of Birth:</label>
         <input type="date"
@@ -21,14 +21,7 @@
             placeholder="Enter your DOB" required>  -->
 
        
-        <input type="password" id="password"
-            name="password"
-            placeholder="Enter your password"
-            pattern=
-            "^(?=.*\d)(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9])\S{8,}$" required              
-            title="Password must contain at least one number,
-                one alphabet, one symbol, and be at
-                least 8 characters long" formControlName="password">
+     
                
 
       
@@ -37,27 +30,40 @@
         
         <input type="text" id="cname"
             name="cname"
-            placeholder="Enter your company name" required formControlName="cname">
+            placeholder="Enter your company name" required [(ngModel)]="user.companyName">
 
         
         <input type="text" id="GSTINNumber"
             name="GSTINNumber"
             placeholder="Enter your GSTIN Number" required
-            maxlength="12" minlength="12" formControlName="GSTINNumber">
+            maxlength="12" minlength="12" [(ngModel)]="user.gstNumber">
+
+
+            <input type="text" id="address"
+            name="addresss"
+            placeholder="Enter your company address" required [(ngModel)]="user.companyAddress">
            
           
-        <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="Enter your phone Number"  formControlName="phoneNumber">
+        <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="Enter your phone Number"  [(ngModel)]="user.phoneNumber">
            
             <div id="phoneValidationMsg"></div>
 
    
               
-                <input type="text" id="address"
-                    name="addresss"
-                    placeholder="Enter your residential address" required formControlName="address">
+          
+
+
+                    <input type="password" id="password"
+                    name="password"
+                    placeholder="Enter your password"
+                    pattern=
+                    "^(?=.*\d)(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9])\S{8,}$" required              
+                    title="Password must contain at least one number,
+                        one alphabet, one symbol, and be at
+                        least 8 characters long" [(ngModel)]="user.password">
 
         <div class="wrap">
-            <input type="submit" (click)="registerseller()">
+            <input type="submit" >
         
         </div>
     </form>
