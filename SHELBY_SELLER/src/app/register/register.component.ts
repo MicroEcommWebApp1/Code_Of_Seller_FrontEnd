@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RegisterService } from '../service/register.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class RegisterComponent {
 
   user = {
-    name: '',
+    name:'',
     emailID: '',
   
     companyName:'',
@@ -20,9 +20,15 @@ export class RegisterComponent {
     companyAddress:'',
     password: '',
   };
-  constructor( private registerservice:RegisterService, private fb:FormBuilder , private router: Router){}
+  constructor( private registerservice:RegisterService , private router: Router){}
 
-  register() {
+  
+
+  register(registerForm : NgForm) {
+    if (registerForm.invalid) {
+      return; // If the form is invalid, do not proceed with registration
+    }
+   
     this.registerservice.registerseller(this.user).subscribe(
       response => {
         console.log('User registered successfully:', response);
