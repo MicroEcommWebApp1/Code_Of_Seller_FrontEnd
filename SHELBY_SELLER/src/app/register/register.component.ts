@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RegisterService } from '../service/register.service';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
@@ -13,7 +14,6 @@ export class RegisterComponent {
   user = {
     name:'',
     emailID: '',
-  
     companyName:'',
     gstNumber:'',
     phoneNumber:'',
@@ -21,8 +21,6 @@ export class RegisterComponent {
     password: '',
   };
   constructor( private registerservice:RegisterService , private router: Router){}
-
-  
 
   register(registerForm : NgForm) {
     if (registerForm.invalid) {
@@ -37,14 +35,24 @@ export class RegisterComponent {
         this.router.navigate(['/login']); // Redirect to login page
         alert('Registration successful! Please login with your credentials.');
       },
-      error => {
+      (error: HttpErrorResponse) => {
         console.error('Error registering user:', error);
-        // Handle error, show error message, etc.
+        if (error.status === 409) {
+          console.error('Email already exists.');
+          alert('EmailID already exists. Please use a different emailID.');
+        } 
+        else if(error.status === 500){
+          console.error('Phone Number already exists.');
+          alert('Phone Number already exists. Please use a different Phone Number.');
+        }
+        else {
+          // Handle other types of errors
+          alert('Error registering user: ' + error.message);
+        }
       }
     );
   }
  
 
-  
-
 }
+

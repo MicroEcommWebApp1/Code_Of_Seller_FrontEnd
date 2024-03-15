@@ -14,7 +14,8 @@ import { Body2Component } from './body2/body2.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 
 import{HttpClientModule} from "@angular/common/http";
-import{ReactiveFormsModule,FormsModule} from '@angular/forms'
+import{ReactiveFormsModule,FormsModule} from '@angular/forms';
+import { SellerdashboardComponent } from './sellerdashboard/sellerdashboard.component'
 
 
 
@@ -29,6 +30,7 @@ import{ReactiveFormsModule,FormsModule} from '@angular/forms'
   
     Body2Component,
     ForgotpasswordComponent,
+    SellerdashboardComponent,
     
   ],
   imports: [

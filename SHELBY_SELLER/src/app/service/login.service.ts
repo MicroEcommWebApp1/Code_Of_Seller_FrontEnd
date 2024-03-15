@@ -2,17 +2,18 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-const BASIC_URL=['http://localhost:8081']
 
+const BASIC_URL=['http://localhost:8081']
 @Injectable({
   providedIn: 'root'
 })
-export class RegisterService {
+export class LoginService {
 
   constructor(private http : HttpClient) { }
 
-  registerseller(seller : any):Observable<any>{
-    return this.http.post(BASIC_URL+'/seller-registrations/register',seller);
+  
+  loginseller(seller : any):Observable<any>{
+    return this.http.post(BASIC_URL+'/seller-registrations/login',seller);
 
   }
 }
