@@ -5,6 +5,10 @@ import { Body2Component } from './body2/body2.component';
 import { RegisterComponent } from './register/register.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 import { SellerdashboardComponent } from './sellerdashboard/sellerdashboard.component';
+import { ProfileComponent } from './profile/profile.component';
+import { AddproductComponent } from './addproduct/addproduct.component';
+import { MatFormField } from '@angular/material/form-field';
+
 
 
 const routes: Routes = [{
@@ -15,9 +19,18 @@ const routes: Routes = [{
   path:'',
   component : Body2Component,
 },
+
+{
+  path:'addproduct',
+  component : AddproductComponent
+},
 {
   path:'register',
   component : RegisterComponent
+},
+{
+  path:'profile',
+  component : ProfileComponent
 },
 {
   path:'forgotpassword',
