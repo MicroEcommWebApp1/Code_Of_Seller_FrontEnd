@@ -15,7 +15,12 @@ import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.compone
 
 import{HttpClientModule} from "@angular/common/http";
 import{ReactiveFormsModule,FormsModule} from '@angular/forms';
-import { SellerdashboardComponent } from './sellerdashboard/sellerdashboard.component'
+import { SellerdashboardComponent } from './sellerdashboard/sellerdashboard.component';
+import { SidenavbarComponent } from './sidenavbar/sidenavbar.component';
+import { AddproductComponent } from './addproduct/addproduct.component';
+import { ProfileComponent } from './profile/profile.component';
+
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 
 
@@ -31,13 +36,17 @@ import { SellerdashboardComponent } from './sellerdashboard/sellerdashboard.comp
     Body2Component,
     ForgotpasswordComponent,
     SellerdashboardComponent,
+    SidenavbarComponent,
+    AddproductComponent,
+    ProfileComponent,
+   
     
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule,FormsModule
+    ReactiveFormsModule,FormsModule,MatFormFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,86 @@
+<app-sidenavbar></app-sidenavbar>
+
+<div class="main">
+  <div class="add-item-container">
+      <h2>Add New Item</h2>
+      <form  #productForm="ngForm" (ngSubmit)="addProduct(productForm)">
+        
+        
+        <label for="name">Product Name:</label>
+        <input type="text" id="name" name="name" [(ngModel)]="product.name" >
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" [(ngModel)]="product.description"></textarea>
+        
+     <!-- <label for="imageFile">Product Image:</label>
+        <input type="file" id="imageFile" name="imageFile" accept="image/*" required  [(ngModel)]="product.picture" required >
+        <label for="name">Image Name:</label>
+        <input type="text" id="picturename" name="picturename" required [(ngModel)]="item.picturename" required #picturename="ngModel">-->
+  
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" [(ngModel)]="product.price">
+       
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" name="quantity" [(ngModel)]="product.quantity" >
+        <label for="category">Category:</label>
+  <select id="category" name="category" [(ngModel)]="product.category">
+    <option value="">Select Category</option>
+    <option value="apparel">APPAREL</option>
+    <option value="gadgets">GADGETS</option>
+  </select>
+  
+
+  
+  <label *ngIf="product.category === 'apparel'" for="subcategory1">Subcategory1:</label>
+  <select *ngIf="product.category === 'apparel'" id="subcategory1" name="subcategory1" [(ngModel)]="product.subcategory1">
+    <option value="">Select Subcategory</option>
+    <option value="men">Men</option>
+    <option value="women">Women</option>
+  </select>
+  
+  <label *ngIf="product.category === 'gadgets'" for="subcategory1">Subcategory1:</label>
+  <select *ngIf="product.category === 'gadgets'" id="subcategory1" name="subcategory1" [(ngModel)]="product.subcategory1" >
+    <option value="">Select Subcategory</option>
+    <option value="mobile">Mobile Phone</option>
+    <option value="earphone">Earphone</option>
+  </select>
+  
+
+  
+  <label *ngIf="product.subcategory1 === 'men' && product.category === 'apparel'" for="subcategory2">Subcategory2:</label>
+  <select *ngIf="product.subcategory1 === 'men' && product.category === 'apparel'" id="subcategory2" name="subcategory2" [(ngModel)]="product.subcategory2">
+    <option value="">Select Subcategory2</option>
+    <option value="jean">Jean</option>
+    <option value="shirt">Shirt</option>
+  </select>
+  
+  <label *ngIf="product.subcategory1 === 'women' && product.category === 'apparel'" for="subcategory2">Subcategory2:</label>
+  <select *ngIf="product.subcategory1 === 'women' && product.category === 'apparel'" id="subcategory2" name="subcategory2" [(ngModel)]="product.subcategory2" >
+    <option value="">Select Subcategory2</option>
+    <option value="kurthi">Kurthi</option>
+    <option value="saree">Saree</option>
+  </select>
+  
+  <label *ngIf="product.subcategory1 === 'mobile' && product.category === 'gadgets'" for="subcategory2">Subcategory2:</label>
+  <select *ngIf="product.subcategory1 === 'mobile' && product.category === 'gadgets'" id="subcategory2" name="subcategory2" [(ngModel)]="product.subcategory2">
+    <option value="">Select Subcategory2</option>
+    <option value="apple">Apple</option>
+    <option value="samsung">Samsung</option>
+  </select>
+  
+  <label *ngIf="product.subcategory1 === 'earphone' && product.category === 'gadgets'" for="subcategory2">Subcategory2:</label>
+  <select *ngIf="product.subcategory1 === 'earphone' && product.category === 'gadgets'" id="subcategory2" name="subcategory2" [(ngModel)]="product.subcategory2">
+    <option value="">Select Subcategory2</option>
+    <option value="boat">BOAT</option>
+    <option value="noise">Noise</option>
+  </select>
+  
+      
+  
+        <button type="submit" >Add Item</button>
+      </form>
+    </div>
+  
+    </div>
+
+    
