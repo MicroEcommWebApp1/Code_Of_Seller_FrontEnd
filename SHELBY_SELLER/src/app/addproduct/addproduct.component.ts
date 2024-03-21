@@ -5,6 +5,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { Product } from '../model/product.model';
 import { NgForm } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
+import { FileHandle } from '../model/file-handke.model';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-addproduct',
@@ -19,14 +21,18 @@ export class AddproductComponent {
     quantity: 0,
     category: '',
     subcategory1: '',
-    subcategory2: ''
+    subcategory2: '',
+    productImages: []
   }
 
-  constructor( private productservice:ProductService , private router: Router){}
+  constructor( private productservice:ProductService , private router: Router ,private sanitizer:DomSanitizer){}
 
 
   addProduct(productForm: NgForm){
-    this.productservice.addProduct(this.product).subscribe(
+
+    const productFormData= this.prepareFormData(this.product);
+
+    this.productservice.addProduct(productFormData).subscribe(
      (response:Product)=>{
       console.log(response);
       alert('product added');
@@ -39,5 +45,44 @@ export class AddproductComponent {
     );
   }
    
+  prepareFormData(product :Product):FormData{
+    const formData =new FormData();
 
+    formData.append(
+      'product',
+      new Blob([JSON.stringify(product)],{type:'application/json'})
+    );
+
+    for(var i=0;i<product.productImages.length;i++)
+    {
+      formData.append(
+        'imageFile',
+        product.productImages[i].file,
+        product.productImages[i].file.name
+      );
+    }
+    return formData;
+
+  }
+  
+    onFileSelected(event: any){
+      if(event.target.files)
+      {
+        const file=event.target.files[0];
+         
+        const fileHandle:FileHandle={
+          file : file,
+          url:this.sanitizer.bypassSecurityTrustUrl(
+            window.URL.createObjectURL(file)
+          )
+        }
+
+        this.product.productImages.push(fileHandle);
+      }
+    }
+
+    removeImages(i:number)
+    {
+      this.product.productImages.slice(i,1);
+    }
 }

@@ -1,18 +1,19 @@
-<app-sidenavbar></app-sidenavbar>
+
 
 <div class="main">
   <div class="add-item-container">
+    
       <h2>Add New Item</h2>
       <form  #productForm="ngForm" (ngSubmit)="addProduct(productForm)">
         
-        
+        <div class="details-container">
         <label for="name">Product Name:</label>
         <input type="text" id="name" name="name" [(ngModel)]="product.name" >
 
         <label for="description">Description:</label>
         <textarea id="description" name="description" [(ngModel)]="product.description"></textarea>
         
-     <!-- <label for="imageFile">Product Image:</label>
+     <!--<label for="imageFile">Product Image:</label>
         <input type="file" id="imageFile" name="imageFile" accept="image/*" required  [(ngModel)]="product.picture" required >
         <label for="name">Image Name:</label>
         <input type="text" id="picturename" name="picturename" required [(ngModel)]="item.picturename" required #picturename="ngModel">-->
@@ -73,11 +74,31 @@
     <option value="">Select Subcategory2</option>
     <option value="boat">BOAT</option>
     <option value="noise">Noise</option>
-  </select>
-  
-      
-  
-        <button type="submit" >Add Item</button>
+  </select></div>
+   <div class="image-container">
+        <div>  <label for="imageFile">Product Image:(Only ".png" files)</label>
+          <input type="file" multiple value="select" #selecFile (change)="onFileSelected($event)"></div>
+          <div class="mt-5">
+            <div class="row">
+              <mat-grid-list cols="2" rowHeight="2:1">
+                <mat-grid-tile *ngFor="let file of product.productImages; let i=index">
+                  <div style="position : relative">
+                   <span class="btn-image-remover" (click)="removeImages(i)">x</span>
+                    <img [src]="file.url" width="100px" height="100px">
+                    <span class="btn-image-remover">x</span>
+                  </div>
+
+                </mat-grid-tile>
+                
+              </mat-grid-list>
+            </div>
+
+          </div>
+        </div>
+        <br><br>
+        <button mat-stroked-button style="margin-right: 3px;">CLEAR</button>
+        <br><br>
+        <button type="submit" >ADD ITEM</button>
       </form>
     </div>
   

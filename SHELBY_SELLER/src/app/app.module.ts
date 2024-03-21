@@ -21,7 +21,11 @@ import { AddproductComponent } from './addproduct/addproduct.component';
 import { ProfileComponent } from './profile/profile.component';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
-
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatTableModule} from '@angular/material/table';
+import {MatIconModule} from '@angular/material/icon';
+import {MatDialogModule} from '@angular/material/dialog';
+import { ShowProductImagesComponent } from './show-product-images/show-product-images.component';
 
 
 @NgModule({
@@ -39,6 +43,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     SidenavbarComponent,
     AddproductComponent,
     ProfileComponent,
+    ShowProductImagesComponent,
    
     
   ],
@@ -46,7 +51,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule,FormsModule,MatFormFieldModule
+    ReactiveFormsModule,FormsModule,MatFormFieldModule,MatGridListModule,MatTableModule,MatDialogModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
