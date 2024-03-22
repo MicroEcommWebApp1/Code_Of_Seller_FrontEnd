@@ -16,7 +16,7 @@ import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.compone
 import{HttpClientModule} from "@angular/common/http";
 import{ReactiveFormsModule,FormsModule} from '@angular/forms';
 import { SellerdashboardComponent } from './sellerdashboard/sellerdashboard.component';
-import { SidenavbarComponent } from './sidenavbar/sidenavbar.component';
+
 import { AddproductComponent } from './addproduct/addproduct.component';
 import { ProfileComponent } from './profile/profile.component';
 
@@ -42,7 +42,7 @@ import { ShowProductImagesComponent } from './show-product-images/show-product-i
     Body2Component,
     ForgotpasswordComponent,
     SellerdashboardComponent,
-    SidenavbarComponent,
+    
     AddproductComponent,
     ProfileComponent,
     ShowProductImagesComponent,
