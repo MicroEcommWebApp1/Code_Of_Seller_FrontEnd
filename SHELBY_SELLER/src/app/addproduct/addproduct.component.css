@@ -32,14 +32,20 @@ label {
   align-items: center;
 }
 
+.details-container {
+  width: 50%;
+}
 
+.image-container {
+  width: 50%;
+}
 
 input {
-  width: 90%;
+  width: 100%;
   padding: 10px;
   margin-bottom: 10px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 
 button {
@@ -64,4 +70,20 @@ select {
   box-sizing: border-box;
   border: 1px solid #3e2222;
   border-radius: 5px;
+}
+mat-grid-tile {
+ border :1px solid #0f0909;
+}
+
+.btn-remove-image{
+  position:absolute;
+  cursor:pointer;
+  top:-10px;
+  right:-10px;
+  background-color:red;
+  color:white;
+  border-radius:50%;
+  width:20px;
+  height:auto;
+  text-align:center;
 }

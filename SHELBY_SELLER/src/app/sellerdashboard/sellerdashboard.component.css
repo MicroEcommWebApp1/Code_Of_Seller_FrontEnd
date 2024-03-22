@@ -1,19 +1,39 @@
 
   
   /* Main content */
-  #content {
-    
-    padding: 20px;
+  .content {
+    padding:20px;
+    background-image: url('../../assets/BG_for_LOGIN.jpg');
    
-    position :absolute;
-    position :absolute;
-    top: 10% ;
-    left:25%;
-    justify-content: flex-end;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+   
+    background-size: cover;
+    background-position: center;
+  
+  
+   
+ }
+ 
+.content table {
+  
+   background-color: rgb(246, 250, 253);
+   width:100px;
+   color: rgb(19, 18, 18);
+   
 
-    
-  }
 
+}
+
+.content table th
+{
+  color:black
+}
+
+.content table td
+{
+  color:black
+}
 
 
 .button{
