@@ -28,6 +28,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { ShowProductImagesComponent } from './show-product-images/show-product-images.component';
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,

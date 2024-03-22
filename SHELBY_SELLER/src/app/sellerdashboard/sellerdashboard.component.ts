@@ -5,6 +5,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Product } from '../model/product.model';
 import { MatDialog } from '@angular/material/dialog';
 import { ShowProductImagesComponent } from '../show-product-images/show-product-images.component';
+import { ImageProcessingService } from '../service/image-processing.service';
+import { map } from 'rxjs';
 
 
 @Component({
@@ -21,10 +23,14 @@ export class SellerdashboardComponent {
   }
 
 
-  constructor(private productservice:ProductService, public imagediaolog:MatDialog){}
+  constructor(private productservice:ProductService, public imagediaolog:MatDialog ,private imageProcessingService:ImageProcessingService){}
 
   public getAllProducts(){
-    this.productservice.getAllProducts().subscribe(
+    this.productservice.getAllProducts()
+    .pipe(
+      map((x:Product[],i)=>x.map((product:Product)=>this.imageProcessingService.createImages(product)))
+    )
+    .subscribe(
       (response:Product[])=>
       {
         console.log(response);
@@ -54,6 +60,12 @@ export class SellerdashboardComponent {
 
   selectImages(product:Product){
     console.log(product);
-    this.imagediaolog.open(ShowProductImagesComponent,{height:'500px',width:'600px'});
+    this.imagediaolog.open(ShowProductImagesComponent,{
+      data:{
+        images:product.productImages
+      },
+      height:'500px',width:'600px'});
   }
+
+
 }
