@@ -31,6 +31,29 @@ public createImages(product:Product){
   product.productImages=productImagesToFileHandle;
   return product;
 }
+
+
+public createImage(product:Product){
+  const productImage:any[] =product.productThumbnail;
+  const productImagesToFileHandle:FileHandle[]=[];
+
+  for(let i=0;i<productImage.length;i++){
+    const imageFileData=productImage[i];
+
+    const imageBlob=this.dataURItoBlob(imageFileData.picByte,imageFileData.type);
+
+    const imageFile=new File([imageBlob],imageFileData.name,{type:imageFileData.type});
+
+    const finalFileHandle:FileHandle={
+      file:imageFile,
+      url: this.sanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(imageFile))
+    };
+    productImagesToFileHandle.push(finalFileHandle);
+  }
+
+  product.productThumbnail=productImagesToFileHandle;
+  return product;
+}
   public dataURItoBlob(picBytes: any,imageType: any) {
     const byteString=window.atob(picBytes);
     const arrayBuffer=new ArrayBuffer(byteString.length);

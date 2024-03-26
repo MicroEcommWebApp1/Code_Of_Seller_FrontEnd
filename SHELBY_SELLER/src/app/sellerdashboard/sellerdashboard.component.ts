@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ShowProductImagesComponent } from '../show-product-images/show-product-images.component';
 import { ImageProcessingService } from '../service/image-processing.service';
 import { map } from 'rxjs';
+import { ShowProductThumbnailComponent } from '../show-product-thumbnail/show-product-thumbnail.component';
 
 
 @Component({
@@ -16,7 +17,7 @@ import { map } from 'rxjs';
 })
 export class SellerdashboardComponent {
   productDetails : Product[]=[];
-  displayedColumns: string[] = ['ID', 'PRODUCT_NAME','IMAGE', 'DESCRIPTION', 'PRICE','QUANTITY','CATEGORY','SUBCATEGORY1','SUBCATEGORY2','EDIT','DELETE'];
+  displayedColumns: string[] = ['ID', 'NAME','THUMBNAIL','IMAGES', 'DESC', 'PRICE','QUANTITY','CATEGORY','SUBCATEGORY1','SUBCATEGORY2','EDIT','DELETE'];
 
   ngOnInit():void{
     this.getAllProducts();
@@ -28,7 +29,14 @@ export class SellerdashboardComponent {
   public getAllProducts(){
     this.productservice.getAllProducts()
     .pipe(
-      map((x:Product[],i)=>x.map((product:Product)=>this.imageProcessingService.createImages(product)))
+      map((products: Product[]) => {
+        return products.map((product: Product) => {
+          // Transform the product using both functions
+          const productWithImages = this.imageProcessingService.createImages(product);
+          const productWithThumbnail = this.imageProcessingService.createImage(productWithImages);
+          return productWithThumbnail;
+        });
+      })
     )
     .subscribe(
       (response:Product[])=>
@@ -66,6 +74,14 @@ export class SellerdashboardComponent {
       },
       height:'500px',width:'600px'});
   }
-
+   
+  selectImage(product:Product){
+    console.log(product);
+    this.imagediaolog.open(ShowProductThumbnailComponent,{
+      data:{
+        images:product.productThumbnail
+      },
+      height:'500px',width:'600px'});
+  }
 
 }

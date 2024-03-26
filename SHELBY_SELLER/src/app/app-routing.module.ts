@@ -11,7 +11,8 @@ import { AddproductComponent } from './addproduct/addproduct.component';
 
 
 
-const routes: Routes = [{
+const routes: Routes = [
+  {
   path: 'login',
   component: LoginComponent,
 },
