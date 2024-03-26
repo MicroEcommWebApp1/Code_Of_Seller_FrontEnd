@@ -4,8 +4,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    z-index:999;
+    position:sticky;
+    top:0;
+    left:0;
    
     padding: 10px 20px;
+   
 }
 
 .logo {
@@ -19,6 +24,7 @@
 .navbar {
     background-color: #090909;
     overflow: hidden;
+    
 }
 
 

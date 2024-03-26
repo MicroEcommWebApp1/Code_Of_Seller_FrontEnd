@@ -26,6 +26,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDialogModule} from '@angular/material/dialog';
 import { ShowProductImagesComponent } from './show-product-images/show-product-images.component';
+import { ShowProductThumbnailComponent } from './show-product-thumbnail/show-product-thumbnail.component';
 
 
 
@@ -46,6 +47,8 @@ import { ShowProductImagesComponent } from './show-product-images/show-product-i
     AddproductComponent,
     ProfileComponent,
     ShowProductImagesComponent,
+    ShowProductThumbnailComponent,
+    
    
     
   ],

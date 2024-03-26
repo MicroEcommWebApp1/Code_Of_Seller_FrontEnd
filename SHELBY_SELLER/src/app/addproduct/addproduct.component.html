@@ -17,7 +17,8 @@
         <input type="file" id="imageFile" name="imageFile" accept="image/*" required  [(ngModel)]="product.picture" required >
         <label for="name">Image Name:</label>
         <input type="text" id="picturename" name="picturename" required [(ngModel)]="item.picturename" required #picturename="ngModel">-->
-  
+
+        
         <label for="price">Price:</label>
         <input type="number" id="price" name="price" [(ngModel)]="product.price">
        
@@ -75,8 +76,29 @@
     <option value="boat">BOAT</option>
     <option value="noise">Noise</option>
   </select></div>
+
+  <div class="image-container">
+    <div>  <label for="imageFile">Product Thumbnail Image:(Only ".png" files)</label>
+      <input type="file" multiple value="select" #selecFile (change)="onFileSelect($event)"></div>
+      <div class="mt-5">
+        <div class="row">
+          <mat-grid-list cols="2" rowHeight="2:1">
+            <mat-grid-tile *ngFor="let file of product.productThumbnail; let i=index">
+              <div style="position : relative">
+               <span class="btn-image-remover" (click)="removeImages(i)">x</span>
+                <img [src]="file.url" width="100px" height="100px">
+                <span class="btn-image-remover">x</span>
+              </div>
+
+            </mat-grid-tile>
+            
+          </mat-grid-list>
+        </div>
+
+      </div>
+</div>
    <div class="image-container">
-        <div>  <label for="imageFile">Product Image:(Only ".png" files)</label>
+        <div>  <label for="imageFile">Product Images:(Only ".png" files)</label>
           <input type="file" multiple value="select" #selecFile (change)="onFileSelected($event)"></div>
           <div class="mt-5">
             <div class="row">
@@ -94,7 +116,7 @@
             </div>
 
           </div>
-        </div>
+</div>
         <br><br>
         <button mat-stroked-button style="margin-right: 3px;">CLEAR</button>
         <br><br>
