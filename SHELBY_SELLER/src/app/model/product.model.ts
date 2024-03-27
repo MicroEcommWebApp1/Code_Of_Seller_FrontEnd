@@ -1,6 +1,7 @@
 import { FileHandle } from "./file-handke.model";
 
 export interface Product{
+  product_id: any;
     name:String;
     description:String,
     price : number,

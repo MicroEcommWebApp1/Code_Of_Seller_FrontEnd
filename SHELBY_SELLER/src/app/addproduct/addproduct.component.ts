@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../service/product.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { Product } from '../model/product.model';
 import { NgForm } from '@angular/forms';
@@ -13,8 +13,11 @@ import { DomSanitizer } from '@angular/platform-browser';
   templateUrl: './addproduct.component.html',
   styleUrls: ['./addproduct.component.css']
 })
-export class AddproductComponent {
+export class AddproductComponent implements OnInit{
+
+  isNewProduct=true;
   product: Product={
+    product_id: null,
     name: '',
     description: '',
     price: 0,
@@ -23,10 +26,22 @@ export class AddproductComponent {
     subcategory1: '',
     subcategory2: '',
     productImages: [],
-    productThumbnail: []
+    productThumbnail: [],
+
   }
 
-  constructor( private productservice:ProductService , private router: Router ,private sanitizer:DomSanitizer){}
+  constructor( private productservice:ProductService , 
+    private router: Router ,
+    private sanitizer:DomSanitizer,
+    private activatedroute:ActivatedRoute){}
+
+  ngOnInit(): void {
+    this.product=this.activatedroute.snapshot.data['product'];
+    if(this.product && this.product.product_id){
+      this.isNewProduct=false;
+    }
+  
+  }
 
 
   addProduct(productForm: NgForm){
