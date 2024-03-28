@@ -8,6 +8,7 @@ import { ShowProductImagesComponent } from '../show-product-images/show-product-
 import { ImageProcessingService } from '../service/image-processing.service';
 import { map } from 'rxjs';
 import { ShowProductThumbnailComponent } from '../show-product-thumbnail/show-product-thumbnail.component';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -24,7 +25,10 @@ export class SellerdashboardComponent {
   }
 
 
-  constructor(private productservice:ProductService, public imagediaolog:MatDialog ,private imageProcessingService:ImageProcessingService){}
+  constructor(private productservice:ProductService, 
+    public imagediaolog:MatDialog ,
+    private imageProcessingService:ImageProcessingService,
+    private router:Router){}
 
   public getAllProducts(){
     this.productservice.getAllProducts()
@@ -33,8 +37,8 @@ export class SellerdashboardComponent {
         return products.map((product: Product) => {
           // Transform the product using both functions
           const productWithImages = this.imageProcessingService.createImages(product);
-          const productWithThumbnail = this.imageProcessingService.createImage(productWithImages);
-          return productWithThumbnail;
+          //const productWithThumbnail = this.imageProcessingService.createImage(productWithImages);
+          return productWithImages;
         });
       })
     )
@@ -46,7 +50,14 @@ export class SellerdashboardComponent {
         
       },
       (error:HttpErrorResponse)=>{
-        console.log(error);
+        console.error('Error Adding Product', error);
+        if (error.status === 400) {
+          console.error('Details are not entered!!');
+          alert('Please make sure that you Enter all the Details');
+        } 
+        else{
+          alert('Error Adding product: ' + error.message);
+        }
       }
     );
   }
@@ -66,6 +77,10 @@ export class SellerdashboardComponent {
     );
   }
 
+  editProductDetails(product_id:any){
+    this.router.navigate(['/addproduct',{product_id:product_id}]);
+  }
+
   selectImages(product:Product){
     console.log(product);
     this.imagediaolog.open(ShowProductImagesComponent,{
@@ -74,14 +89,5 @@ export class SellerdashboardComponent {
       },
       height:'500px',width:'600px'});
   }
-   
-  selectImage(product:Product){
-    console.log(product);
-    this.imagediaolog.open(ShowProductThumbnailComponent,{
-      data:{
-        images:product.productThumbnail
-      },
-      height:'500px',width:'600px'});
-  }
-
+  
 }

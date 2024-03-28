@@ -7,6 +7,7 @@ import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.compone
 import { SellerdashboardComponent } from './sellerdashboard/sellerdashboard.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AddproductComponent } from './addproduct/addproduct.component';
+import { ProductResolveService } from './service/product-resolve.service';
 
 
 
@@ -23,7 +24,8 @@ const routes: Routes = [
 
 {
   path:'addproduct',
-  component : AddproductComponent
+  component : AddproductComponent,
+  resolve:{ product : ProductResolveService}
 },
 {
   path:'register',

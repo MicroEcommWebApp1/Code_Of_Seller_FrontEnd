@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../service/product.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { Product } from '../model/product.model';
 import { NgForm } from '@angular/forms';
@@ -13,8 +13,11 @@ import { DomSanitizer } from '@angular/platform-browser';
   templateUrl: './addproduct.component.html',
   styleUrls: ['./addproduct.component.css']
 })
-export class AddproductComponent {
+export class AddproductComponent implements OnInit{
+
+  isNewProduct=true;
   product: Product={
+    product_id: null,
     name: '',
     description: '',
     price: 0,
@@ -22,11 +25,25 @@ export class AddproductComponent {
     category: '',
     subcategory1: '',
     subcategory2: '',
+    thumbnail:'',
     productImages: [],
-    productThumbnail: []
+   
+
   }
 
-  constructor( private productservice:ProductService , private router: Router ,private sanitizer:DomSanitizer){}
+  constructor( private productservice:ProductService , 
+    private router: Router ,
+    private sanitizer:DomSanitizer,
+    private activatedroute:ActivatedRoute){}
+
+  ngOnInit(): void {
+    this.product=this.activatedroute.snapshot.data['product'];
+   
+    if(this.product && this.product.product_id){
+      this.isNewProduct=false;
+    }
+  
+  }
 
 
   addProduct(productForm: NgForm){
@@ -63,16 +80,7 @@ export class AddproductComponent {
       );
     }
     
-    for(var i=0;i<product.productThumbnail.length;i++)
-    {
-      formData.append(
-        'thumbnail',
-        product.productThumbnail[i].file,
-        product.productThumbnail[i].file.name
-      );
-    }
-
-
+   
     return formData;
 
 
@@ -92,22 +100,6 @@ export class AddproductComponent {
         }
 
         this.product.productImages.push(fileHandle);
-      }
-    }
-
-    onFileSelect(event: any){
-      if(event.target.files)
-      {
-        const file=event.target.files[0];
-         
-        const fileHandle:FileHandle={
-          file : file,
-          url:this.sanitizer.bypassSecurityTrustUrl(
-            window.URL.createObjectURL(file)
-          )
-        }
-
-        this.product.productThumbnail.push(fileHandle);
       }
     }
 
