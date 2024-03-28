@@ -37,8 +37,8 @@ export class SellerdashboardComponent {
         return products.map((product: Product) => {
           // Transform the product using both functions
           const productWithImages = this.imageProcessingService.createImages(product);
-          const productWithThumbnail = this.imageProcessingService.createImage(productWithImages);
-          return productWithThumbnail;
+          //const productWithThumbnail = this.imageProcessingService.createImage(productWithImages);
+          return productWithImages;
         });
       })
     )
@@ -89,14 +89,5 @@ export class SellerdashboardComponent {
       },
       height:'500px',width:'600px'});
   }
-   
-  selectImage(product:Product){
-    console.log(product);
-    this.imagediaolog.open(ShowProductThumbnailComponent,{
-      data:{
-        images:product.productThumbnail
-      },
-      height:'500px',width:'600px'});
-  }
-
+  
 }

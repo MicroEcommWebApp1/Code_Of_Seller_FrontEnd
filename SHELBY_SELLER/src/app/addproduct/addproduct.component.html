@@ -77,26 +77,10 @@
     <option value="noise">Noise</option>
   </select></div>
 
-  <div class="image-container">
-    <div>  <label for="imageFile">Product Thumbnail Image:(Only ".png" files)</label>
-      <input type="file" multiple value="select" #selecFile (change)="onFileSelect($event)"></div>
-      <div class="mt-5">
-        <div class="row">
-          <mat-grid-list cols="2" rowHeight="2:1">
-            <mat-grid-tile *ngFor="let file of product.productThumbnail; let i=index">
-              <div style="position : relative">
-               <span class="btn-image-remover" (click)="removeImages(i)">x</span>
-                <img [src]="file.url" width="100px" height="100px">
-                <span class="btn-image-remover">x</span>
-              </div>
+ 
+    <label for="name">Thumbnail URL:</label>
+    <input type="text" id="thumbnail" name="thumbnail" [(ngModel)]="product.thumbnail" >
 
-            </mat-grid-tile>
-            
-          </mat-grid-list>
-        </div>
-
-      </div>
-</div>
    <div class="image-container">
         <div>  <label for="imageFile">Product Images:(Only ".png" files)</label>
           <input type="file" multiple value="select" #selecFile (change)="onFileSelected($event)"></div>

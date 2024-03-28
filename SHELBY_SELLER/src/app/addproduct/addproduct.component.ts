@@ -25,8 +25,9 @@ export class AddproductComponent implements OnInit{
     category: '',
     subcategory1: '',
     subcategory2: '',
+    thumbnail:'',
     productImages: [],
-    productThumbnail: [],
+   
 
   }
 
@@ -37,6 +38,7 @@ export class AddproductComponent implements OnInit{
 
   ngOnInit(): void {
     this.product=this.activatedroute.snapshot.data['product'];
+   
     if(this.product && this.product.product_id){
       this.isNewProduct=false;
     }
@@ -78,16 +80,7 @@ export class AddproductComponent implements OnInit{
       );
     }
     
-    for(var i=0;i<product.productThumbnail.length;i++)
-    {
-      formData.append(
-        'thumbnail',
-        product.productThumbnail[i].file,
-        product.productThumbnail[i].file.name
-      );
-    }
-
-
+   
     return formData;
 
 
@@ -107,22 +100,6 @@ export class AddproductComponent implements OnInit{
         }
 
         this.product.productImages.push(fileHandle);
-      }
-    }
-
-    onFileSelect(event: any){
-      if(event.target.files)
-      {
-        const file=event.target.files[0];
-         
-        const fileHandle:FileHandle={
-          file : file,
-          url:this.sanitizer.bypassSecurityTrustUrl(
-            window.URL.createObjectURL(file)
-          )
-        }
-
-        this.product.productThumbnail.push(fileHandle);
       }
     }
 

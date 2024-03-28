@@ -18,12 +18,7 @@ export class ProductResolveService implements Resolve<Product>{
     {
       return this.productservice.getProductDetailsById(id)
       .pipe(
-        map((product: Product) => {
-          // Transform the product using both functions
-          const productWithImages = this.imageProcessingService.createImages(product);
-          const productWithThumbnail = this.imageProcessingService.createImage(productWithImages);
-          return productWithThumbnail;
-        })
+       map(p=>this.imageProcessingService.createImages(p))
       );
     }
     else{
@@ -41,8 +36,8 @@ export class ProductResolveService implements Resolve<Product>{
     category: '',
     subcategory1: '',
     subcategory2: '',
-    productImages: [],
-    productThumbnail: []
+    thumbnail:'',
+    productImages: []
     };
   }
 }

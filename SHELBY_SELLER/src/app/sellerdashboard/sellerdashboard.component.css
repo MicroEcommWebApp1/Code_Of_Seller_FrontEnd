@@ -29,6 +29,17 @@
 
 }
 
+.special{
+  background-image: url('../../assets/button.png');
+  background-color: transparent;
+  color:#088178;
+  border:0;
+  padding: 14px 80px 14px 65px;
+  background-repeat:no-repeat;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 15px;
+}
 .content table th
 {
   color:black;
