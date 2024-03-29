@@ -3,6 +3,7 @@ import { RegisterService } from '../service/register.service';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Register } from '../model/register.model';
 
 @Component({
   selector: 'app-register',
@@ -53,6 +54,6 @@ export class RegisterComponent {
     );
   }
  
-
+  
 }
 
