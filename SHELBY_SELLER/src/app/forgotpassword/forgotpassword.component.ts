@@ -22,6 +22,7 @@ export class ForgotpasswordComponent {
         // Handle success response
         this.responseMessage = response;
         // You can handle the navigation logic here if needed
+        alert("please Check your Email for password")
         this.router.navigate(['/login']);
       },
       (error: HttpErrorResponse) => {
