@@ -3,6 +3,7 @@ import { RegisterService } from '../service/register.service';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Register } from '../model/register.model';
 
 @Component({
   selector: 'app-register',
@@ -41,10 +42,7 @@ export class RegisterComponent {
           console.error('Email already exists.');
           alert('EmailID already exists. Please use a different emailID.');
         } 
-        else if(error.status === 500){
-          console.error('Phone Number already exists.');
-          alert('Phone Number already exists. Please use a different Phone Number.');
-        }
+      
         else {
           // Handle other types of errors
           alert('Error registering user: ' + error.message);
@@ -53,6 +51,6 @@ export class RegisterComponent {
     );
   }
  
-
+  
 }
 
