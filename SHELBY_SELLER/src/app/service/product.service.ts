@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, catchError, map, throwError } from 'rxjs';
 import { Product } from '../model/product.model';
 
 const BASIC_URL=['http://localhost:8080']
@@ -13,6 +13,7 @@ export class ProductService {
 
   constructor(private http : HttpClient) { }
 
+  private baseUrl = 'http://localhost:8080/products/';
  
   public addProduct(product: FormData): Observable<any> {
     return this.http.post<Product>("http://localhost:8080/products/addNewProduct",product);
@@ -20,6 +21,21 @@ export class ProductService {
 
   public getAllProducts(){
     return this.http.get<Product[]>("http://localhost:8080/products/getAllProducts");
+  }
+
+  getProductsByEmail(emailID: String) {
+    return this.http.get<any>(`http://localhost:8080/products/productdetails/${emailID}`).pipe(
+     catchError(this.handleError)
+   );
+  }
+
+ 
+
+  private handleError(error: any) {
+    console.error('An error occurred:', error);
+    return throwError(error);
+
+    
   }
 
   public deleteProduct(product_id:number)

@@ -3,6 +3,11 @@ import { LoginService } from '../service/login.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
+import Swal from 'sweetalert2';
+import { SellerService } from '../service/seller.service';
+import { User } from '@auth0/auth0-spa-js';
+import { login } from '../model/login.model';
+import { Register } from '../model/register.model';
 
 @Component({
   selector: 'app-login',
@@ -17,32 +22,57 @@ export class LoginComponent {
     emailID: '',
   password:''}
 
-    constructor( private registerservice:LoginService , private router: Router){}
+    constructor( private loginService:LoginService , private router: Router,private sellerservice :SellerService){}
 
     login(loginForm: NgForm) {
       if (loginForm.invalid) {
         return; // If the form is invalid, do not proceed with registration
       }
      
-      this.registerservice.loginseller(this.user).subscribe(
-        response => {
-          console.log('User logged in successfully:', response);
-          
-       
-          this.router.navigate(['/sellerdashboard']); // Redirect to login page
-          alert('Login successful!');
+      this.loginService.loginseller(this.user).subscribe({
+        next: (data) => {
+          this.sellerservice.getSellerDetailsByEmail(this.user.emailID).subscribe({
+            next: (registerDto: Register[]) => {
+              if (registerDto.length > 0) {
+                localStorage.setItem('registerDto', JSON.stringify(registerDto[0]));
+                  Swal.fire({
+                    title: "Good job!",
+                    text: "Successfully Loggedin!",
+                    icon: "success"
+                  });
+                  this.router.navigate(['/sellerdashboard']);
+                // alert("Login successful");
+                // this.router.navigate(['/buyerdash']);
+              }
+            },
+            error: (e) => {
+              console.log(e);
+              if (e.status === 200) {
+                Swal.fire({
+                  title: "Good job!",
+                  text: "Successfully Loggedin!",
+                  icon: "success"
+                });
+                this.router.navigate(['/sellerdashboard']);
+              } else {
+                Swal.fire({
+                  icon: "error",
+                  title: "Oops...",
+                  text: "Invalid Credentials"
+                });
+                console.log("logged fail");
+              }
+            }
+          });
         },
-        (error: HttpErrorResponse) => {
-          console.error('Error logging in:', error);
-          if (error.status === 400) {
-            alert('Email ID or Password can\'t be empty');
-          } else if (error.status === 401) {
-            alert('Invalid email or password');
-          } else {
-            alert('An error occurred while logging in. Please try again later.');
-          }
+        error: (errorResponse) => {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: errorResponse.error.message || "An error occurred during login."
+          });
         }
-      );
+      });
     }
    
 
