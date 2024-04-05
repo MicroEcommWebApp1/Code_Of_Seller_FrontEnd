@@ -8,45 +8,53 @@ import { SellerdashboardComponent } from './sellerdashboard/sellerdashboard.comp
 import { ProfileComponent } from './profile/profile.component';
 import { AddproductComponent } from './addproduct/addproduct.component';
 import { ProductResolveService } from './service/product-resolve.service';
-import { AuthGuard } from '@auth0/auth0-angular';
+
+import { EditprofileComponent } from './editprofile/editprofile.component';
+import { OrderlistComponent } from './orderlist/orderlist.component';
+import { AuthGuard } from './service/auth.guard';
+
 
 
 
 
 const routes: Routes = [
   {
-  path: 'login',
-  component: LoginComponent,
-},
-{
-  path:'',
-  component : Body2Component,
-},
+    path: 'login',
+    component: LoginComponent,
+  },
+  {
+    path: '',
+    component: Body2Component,
+  },
 
-{
-  path:'addproduct',
-  component : AddproductComponent,
-  resolve:{ product : ProductResolveService},
- 
-},
-{
-  path:'register',
-  component : RegisterComponent
-},
-{
-  path:'profile',
-  component : ProfileComponent,
- 
-},
-{
-  path:'forgotpassword',
-  component : ForgotpasswordComponent
-},
-{
-  path:'sellerdashboard',
-  component : SellerdashboardComponent,
- 
-}
+  {
+    path: 'addproduct',
+    component: AddproductComponent,
+    resolve: { product: ProductResolveService },
+    canActivate:[AuthGuard],
+
+  },
+  {
+    path: 'register',
+    component: RegisterComponent
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent,canActivate:[AuthGuard]
+
+  },
+  { path: 'editprofile', component: EditprofileComponent ,canActivate:[AuthGuard]},
+  {
+    path: 'orderlist', component: OrderlistComponent,canActivate:[AuthGuard]
+  },
+  {
+    path: 'forgotpassword', component: ForgotpasswordComponent
+  },
+  {
+    path: 'sellerdashboard',
+    component: SellerdashboardComponent,canActivate:[AuthGuard]
+
+  }
 
 ];
 

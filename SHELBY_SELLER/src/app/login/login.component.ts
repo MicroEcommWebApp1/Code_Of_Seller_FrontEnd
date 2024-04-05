@@ -8,6 +8,7 @@ import { SellerService } from '../service/seller.service';
 import { User } from '@auth0/auth0-spa-js';
 import { login } from '../model/login.model';
 import { Register } from '../model/register.model';
+import { AuthService } from '../service/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,7 @@ export class LoginComponent {
     emailID: '',
   password:''}
 
-    constructor( private loginService:LoginService , private router: Router,private sellerservice :SellerService){}
+    constructor( private loginService:LoginService , private router: Router,private sellerservice :SellerService,private authService :AuthService ){}
 
     login(loginForm: NgForm) {
       if (loginForm.invalid) {
@@ -33,6 +34,7 @@ export class LoginComponent {
         next: (data) => {
           this.sellerservice.getSellerDetailsByEmail(this.user.emailID).subscribe({
             next: (registerDto: Register[]) => {
+              this.authService.login();
               if (registerDto.length > 0) {
                 localStorage.setItem('registerDto', JSON.stringify(registerDto[0]));
                   Swal.fire({

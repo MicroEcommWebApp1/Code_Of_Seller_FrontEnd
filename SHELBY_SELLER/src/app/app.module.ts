@@ -28,6 +28,9 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { ShowProductImagesComponent } from './show-product-images/show-product-images.component';
 import { SellernavbarComponent } from './sellernavbar/sellernavbar.component';
 import { OrderlistComponent } from './orderlist/orderlist.component';
+import { EditprofileComponent } from './editprofile/editprofile.component';
+import {MatTabsModule} from '@angular/material/tabs';
+
 
 
 
@@ -50,6 +53,7 @@ import { OrderlistComponent } from './orderlist/orderlist.component';
     ShowProductImagesComponent,
     SellernavbarComponent,
     OrderlistComponent,
+    EditprofileComponent,
 
    
     
@@ -59,7 +63,7 @@ import { OrderlistComponent } from './orderlist/orderlist.component';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,FormsModule,MatFormFieldModule,MatGridListModule,MatTableModule,MatDialogModule,
-    MatIconModule
+    MatIconModule,MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

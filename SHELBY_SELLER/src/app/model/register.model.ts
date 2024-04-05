@@ -7,4 +7,4 @@ export interface Register{
     companyAddress:String;
     phoneNumber:number;
     password:String;
-}
+    }

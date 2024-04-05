@@ -10,6 +10,7 @@ import { map } from 'rxjs';
 
 import { Router } from '@angular/router';
 import { Register } from '../model/register.model';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -90,7 +91,11 @@ export class SellerdashboardComponent {
       (response)=>
       {
         console.log(response);
-        alert("PRODUCT DELETED!!");
+       Swal.fire({
+        title: "Good job!",
+        text: "PRODUCT DELETED!",
+       icon: "success" 
+       })
         this.getAllProducts();
       },
       (error)=>{
