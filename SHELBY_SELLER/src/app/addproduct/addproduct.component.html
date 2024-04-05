@@ -7,6 +7,8 @@
       <form  #productForm="ngForm" (ngSubmit)="addProduct(productForm)">
         
         <div class="details-container">
+
+          
         <label for="name">Product Name:</label>
         <input type="text" id="name" name="name" [(ngModel)]="product.name" >
 

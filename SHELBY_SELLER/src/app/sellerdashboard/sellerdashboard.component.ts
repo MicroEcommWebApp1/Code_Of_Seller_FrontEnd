@@ -7,8 +7,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { ShowProductImagesComponent } from '../show-product-images/show-product-images.component';
 import { ImageProcessingService } from '../service/image-processing.service';
 import { map } from 'rxjs';
-import { ShowProductThumbnailComponent } from '../show-product-thumbnail/show-product-thumbnail.component';
+
 import { Router } from '@angular/router';
+import { Register } from '../model/register.model';
 
 
 @Component({
@@ -17,11 +18,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./sellerdashboard.component.css']
 })
 export class SellerdashboardComponent {
+  registerDto!: Register;
   productDetails : Product[]=[];
   displayedColumns: string[] = ['ID', 'NAME','THUMBNAIL','IMAGES', 'DESC', 'PRICE','QUANTITY','CATEGORY','SUBCATEGORY1','SUBCATEGORY2','EDIT','DELETE'];
 
   ngOnInit():void{
-    this.getAllProducts();
+   
+    this.registerDto = JSON.parse(localStorage.getItem('registerDto') || '{}');
+    console.log(this.registerDto.emailID);
+    this.registerDto.emailID=this.registerDto.emailID;
+   this.getAllProducts();
+  // this.fetchProducts();
   }
 
 
@@ -30,8 +37,23 @@ export class SellerdashboardComponent {
     private imageProcessingService:ImageProcessingService,
     private router:Router){}
 
+    fetchProducts() {
+      this.productservice.getProductsByEmail(this.registerDto.emailID).subscribe(
+        (cartItems:Product[]) => {
+          this.productDetails =cartItems;
+          console.log(cartItems);
+        },
+        error => {
+          console.error('Error fetching cart items:', error);
+        }
+      );
+    }
+
+  
   public getAllProducts(){
-    this.productservice.getAllProducts()
+  
+   // this.register.emailID = this.register.emailID;
+    this.productservice.getProductsByEmail(this.registerDto.emailID)
     .pipe(
       map((products: Product[]) => {
         return products.map((product: Product) => {
@@ -50,7 +72,7 @@ export class SellerdashboardComponent {
         
       },
       (error:HttpErrorResponse)=>{
-        console.error('Error Adding Product', error);
+        console.error('Error Displaying Products', error);
         if (error.status === 400) {
           console.error('Details are not entered!!');
           alert('Please make sure that you Enter all the Details');
@@ -81,11 +103,11 @@ export class SellerdashboardComponent {
     this.router.navigate(['/addproduct',{product_id:product_id}]);
   }
 
-  selectImages(product:Product){
+  SelectImages(product:Product){
     console.log(product);
     this.imagediaolog.open(ShowProductImagesComponent,{
       data:{
-        images:product.productImages
+        image:product.productImages
       },
       height:'500px',width:'600px'});
   }

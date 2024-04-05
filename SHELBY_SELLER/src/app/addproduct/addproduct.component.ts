@@ -7,6 +7,8 @@ import { NgForm } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { FileHandle } from '../model/file-handke.model';
 import { DomSanitizer } from '@angular/platform-browser';
+import Swal from 'sweetalert2';
+import { Register } from '../model/register.model';
 
 @Component({
   selector: 'app-addproduct',
@@ -15,6 +17,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class AddproductComponent implements OnInit{
 
+  registerDto!: Register;
   isNewProduct=true;
   product: Product={
     product_id: null,
@@ -25,10 +28,10 @@ export class AddproductComponent implements OnInit{
     category: '',
     subcategory1: '',
     subcategory2: '',
-    thumbnail:'',
+    thumbnail: '',
     productImages: [],
-   
-
+    email: '',
+    seller_id: 0
   }
 
   constructor( private productservice:ProductService , 
@@ -42,18 +45,28 @@ export class AddproductComponent implements OnInit{
     if(this.product && this.product.product_id){
       this.isNewProduct=false;
     }
+
+    this.registerDto = JSON.parse(localStorage.getItem('registerDto') || '{}');
+    this.product.email=this.registerDto.emailID;
+    this.product.seller_id=this.registerDto.id;
+    console.log(this.product.email);
   
   }
 
 
   addProduct(productForm: NgForm){
-
+    
     const productFormData= this.prepareFormData(this.product);
-
+    
     this.productservice.addProduct(productFormData).subscribe(
      (response:Product)=>{
       console.log(response);
-      alert('product added');
+      Swal.fire({
+        title: "Good job!",
+        text: "Product Added Successfully!",
+        icon: "success"
+      });
+      //alert('product added');
       this.router.navigate(['/sellerdashboard']);
       },
       (error:HttpErrorResponse)=>
@@ -65,10 +78,10 @@ export class AddproductComponent implements OnInit{
    
   prepareFormData(product :Product):FormData{
     const formData =new FormData();
-
+    
     formData.append(
       'product',
-      new Blob([JSON.stringify(product)],{type:'application/json'})
+       new Blob([JSON.stringify(product)],{type:'application/json'})
     );
 
     for(var i=0;i<product.productImages.length;i++)
@@ -80,7 +93,7 @@ export class AddproductComponent implements OnInit{
       );
     }
     
-   
+  
     return formData;
 
 

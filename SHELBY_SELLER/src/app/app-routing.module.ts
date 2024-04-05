@@ -8,6 +8,7 @@ import { SellerdashboardComponent } from './sellerdashboard/sellerdashboard.comp
 import { ProfileComponent } from './profile/profile.component';
 import { AddproductComponent } from './addproduct/addproduct.component';
 import { ProductResolveService } from './service/product-resolve.service';
+import { AuthGuard } from '@auth0/auth0-angular';
 
 
 
@@ -25,7 +26,8 @@ const routes: Routes = [
 {
   path:'addproduct',
   component : AddproductComponent,
-  resolve:{ product : ProductResolveService}
+  resolve:{ product : ProductResolveService},
+ 
 },
 {
   path:'register',
@@ -33,7 +35,8 @@ const routes: Routes = [
 },
 {
   path:'profile',
-  component : ProfileComponent
+  component : ProfileComponent,
+ 
 },
 {
   path:'forgotpassword',
@@ -41,7 +44,8 @@ const routes: Routes = [
 },
 {
   path:'sellerdashboard',
-  component : SellerdashboardComponent
+  component : SellerdashboardComponent,
+ 
 }
 
 ];

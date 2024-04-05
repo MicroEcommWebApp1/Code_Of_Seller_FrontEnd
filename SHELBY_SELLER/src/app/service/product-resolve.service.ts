@@ -29,7 +29,9 @@ export class ProductResolveService implements Resolve<Product>{
   getProductDetails(){
     return {
      product_id:null,
-      name: '',
+     seller_id:0, 
+     name: '',
+      email:'',
     description: '',
     price: 0,
     quantity: 0,

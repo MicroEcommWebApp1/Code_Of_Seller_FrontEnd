@@ -3,7 +3,8 @@ import { RegisterService } from '../service/register.service';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Register } from '../model/register.model';
+
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register',
@@ -34,13 +35,24 @@ export class RegisterComponent {
         
      
         this.router.navigate(['/login']); // Redirect to login page
-        alert('Registration successful! Please login with your credentials.');
+        
+        Swal.fire({
+                  title: "Good job!",
+                  text: "Registered Successfully!",
+                  icon: "success"
+                });
+        //alert('Registration successful! Please login with your credentials.');
       },
       (error: HttpErrorResponse) => {
         console.error('Error registering user:', error);
         if (error.status === 409) {
           console.error('Email already exists.');
-          alert('EmailID already exists. Please use a different emailID.');
+          Swal.fire({
+            title: "OOPS!!",
+            text: "EmailID already exists. Please use a different emailID.",
+            icon: "error"
+          });
+          // alert('EmailID already exists. Please use a different emailID.');
         } 
       
         else {

@@ -1,3 +1,5 @@
+
+<app-sellernavbar></app-sellernavbar>
 <div class="content">
   <!-- Your main content goes here -->
 
@@ -39,7 +41,7 @@
       <ng-container matColumnDef="IMAGES">
         <th mat-header-cell *matHeaderCellDef>IMAGE</th>
         <td mat-cell *matCellDef="let element">
-          <button mat-button color="primary" (click)="selectImages(element)">
+          <button mat-button color="primary" (click)="SelectImages(element)">
             <mat-icon>images</mat-icon>
           </button>
         </td>
@@ -67,12 +69,12 @@
       </ng-container>
 
       <ng-container matColumnDef="SUBCATEGORY1">
-        <th mat-header-cell *matHeaderCellDef>SUB_CATEGORY_1</th>
+        <th mat-header-cell *matHeaderCellDef>SUB_CAT_1</th>
         <td mat-cell *matCellDef="let element"> {{element.subcategory1}} </td>
       </ng-container>
 
       <ng-container matColumnDef="SUBCATEGORY2">
-        <th mat-header-cell *matHeaderCellDef>SUB_CATEGORY_2</th>
+        <th mat-header-cell *matHeaderCellDef>SUB_CAT_2</th>
         <td mat-cell *matCellDef="let element">{{element.subcategory2}} </td>
       </ng-container>
 
