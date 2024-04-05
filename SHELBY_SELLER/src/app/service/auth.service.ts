@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,11 @@ export class AuthService {
   logout() {
     // Perform logout logic here
     this.isLoggedIn = false;
+  }
+
+  isAuthenticatedUser(): Observable<boolean> {
+   
+    return of(this.isLoggedIn);
   }
 
 }

@@ -6,6 +6,7 @@
     align-items: center;
     z-index:999;
     position:sticky;
+   
     top:0;
     left:0;
    
@@ -22,8 +23,9 @@
 
 
 .navbar {
-    background-color: #090909;
+    background-color: #c2d6dd;
     overflow: hidden;
+    
     
 }
 
@@ -36,6 +38,7 @@
     text-align: center;
     padding: 14px 20px;
     text-decoration: none;
+    color:black;
 }
 
 .navbar a:hover {
