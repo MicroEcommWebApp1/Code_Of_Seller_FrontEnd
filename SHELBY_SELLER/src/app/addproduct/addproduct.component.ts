@@ -31,7 +31,8 @@ export class AddproductComponent implements OnInit{
     thumbnail: '',
     productImages: [],
     email: '',
-    seller_id: 0
+    seller_id: 0,
+    tags: ''
   }
 
   constructor( private productservice:ProductService , 
