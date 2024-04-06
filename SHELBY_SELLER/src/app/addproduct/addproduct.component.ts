@@ -101,7 +101,7 @@ export class AddproductComponent implements OnInit{
 
   }
   
-    onFileSelected(event: any){
+    onFileSelected(event: any) {
       if(event.target.files)
       {
         const file=event.target.files[0];
