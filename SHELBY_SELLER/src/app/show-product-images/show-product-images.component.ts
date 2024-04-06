@@ -17,7 +17,7 @@ export class ShowProductImagesComponent {
 
   receiveImages(){
     console.log(this.data);
-    console.log("in receive images function");
+   
   }
 
 }

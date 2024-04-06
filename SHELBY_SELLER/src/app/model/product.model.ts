@@ -12,6 +12,7 @@ export interface Product{
     subcategory1:String,
     subcategory2 : String,
     thumbnail:String,
+    tags:String,
     productImages: FileHandle[],
 
 }

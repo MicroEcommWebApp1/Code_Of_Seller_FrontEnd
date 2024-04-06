@@ -87,3 +87,9 @@ mat-grid-tile {
   height:auto;
   text-align:center;
 }
+
+.text-danger {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}

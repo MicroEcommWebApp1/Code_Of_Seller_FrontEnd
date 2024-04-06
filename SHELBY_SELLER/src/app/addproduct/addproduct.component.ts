@@ -31,7 +31,8 @@ export class AddproductComponent implements OnInit{
     thumbnail: '',
     productImages: [],
     email: '',
-    seller_id: 0
+    seller_id: 0,
+    tags: ''
   }
 
   constructor( private productservice:ProductService , 
@@ -100,7 +101,7 @@ export class AddproductComponent implements OnInit{
 
   }
   
-    onFileSelected(event: any){
+    onFileSelected(event: any) {
       if(event.target.files)
       {
         const file=event.target.files[0];
