@@ -10,9 +10,9 @@
 
          <div> 
         <label for="name">Product Name:</label>
-        <input type="text" id="name" name="name" [(ngModel)]="product.name" required  #name="ngModel" >
-        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-danger">
-          <div *ngIf="name.errors?.['required']">Product name is required.</div>
+        <input type="text" id="name" name="name" [(ngModel)]="product.productName" required  #productName="ngModel" >
+        <div *ngIf="productName.invalid && (productName.dirty || productName.touched)" class="text-danger">
+          <div *ngIf="productName.errors?.['required']">Product name is required.</div>
       </div></div>
        
       <div>

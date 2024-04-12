@@ -30,8 +30,8 @@ export class ProductResolveService implements Resolve<Product>{
     return {
      product_id:null,
      seller_id:0, 
-     name: '',
-      email:'',
+     productName: '',
+     sellerEmailID:'',
     description: '',
     tags:'',
     price: 0,
