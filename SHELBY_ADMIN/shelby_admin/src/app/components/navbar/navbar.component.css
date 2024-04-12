@@ -1,0 +1,24 @@
+.logo {
+    width: 70px; /* Adjust width as needed */
+    height: 50px; /* Maintain aspect ratio */
+    background-color: aliceblue;
+}
+
+nav{
+    height:70px;
+    color:black;
+    }
+.navbar{
+    background-color: #c2d6dd;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.nav-item a{
+    
+ color:black;
+    
+}
+
+nav li{
+    color:black;
+}
+

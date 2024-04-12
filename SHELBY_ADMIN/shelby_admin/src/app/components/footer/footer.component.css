@@ -1,9 +1,9 @@
 /* footer.component.css */
 .footer {
-    background-color: #080909;
+    background-color: #c2d6dd;
    
     
-    color: #fff;
+    color:black;
     padding: 20px ;
     padding-left:35%;
     text-align: center;
@@ -16,6 +16,7 @@
     
     justify-content: center;
     align-items: center;
+    color: black;
 
 }
 
