@@ -21,7 +21,7 @@ export class AddproductComponent implements OnInit{
   isNewProduct=true;
   product: Product={
     product_id: null,
-    name: '',
+    productName: '',
     description: '',
     price: 0,
     quantity: 0,
@@ -30,7 +30,7 @@ export class AddproductComponent implements OnInit{
     subcategory2: '',
     thumbnail: '',
     productImages: [],
-    email: '',
+    sellerEmailID: '',
     seller_id: 0,
     tags: ''
   }
@@ -48,9 +48,9 @@ export class AddproductComponent implements OnInit{
     }
 
     this.registerDto = JSON.parse(localStorage.getItem('registerDto') || '{}');
-    this.product.email=this.registerDto.emailID;
+    this.product.sellerEmailID=this.registerDto.emailID;
     this.product.seller_id=this.registerDto.id;
-    console.log(this.product.email);
+    console.log(this.product.sellerEmailID);
   
   }
 
