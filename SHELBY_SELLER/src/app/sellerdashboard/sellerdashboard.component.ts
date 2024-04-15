@@ -85,27 +85,39 @@ export class SellerdashboardComponent {
     );
   }
   
-  deleteProduct(product_id:number)
-  {
-    this.productservice.deleteProduct(product_id).subscribe(
-      (response)=>
-      {
-        console.log(response);
-       Swal.fire({
-        title: "Good job!",
-        text: "PRODUCT DELETED!",
-       icon: "success" 
-       })
-        this.getAllProducts();
-      },
-      (error)=>{
-        console.log(error);
+  deleteProduct(productId: number): void {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "Do you want to delete the Product!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.productservice.deleteProduct(productId).subscribe(() => {
+          Swal.fire(
+            "Deleted!",
+            "Product deleted successfully.",
+            "success"
+          );
+          // Perform any additional actions after successful deletion
+          this.getAllProducts();
+        }, error => {
+          console.error('Error deleting product:', error);
+          Swal.fire(
+            "Error!",
+            "An error occurred while deleting the product.",
+            "error"
+          );
+        });
       }
-    );
+    });
   }
 
-  editProductDetails(product_id:any){
-    this.router.navigate(['/addproduct',{product_id:product_id}]);
+  editProductDetails(productId:any){
+    this.router.navigate(['/addproduct',{productId:productId}]);
   }
 
   SelectImages(product:Product){

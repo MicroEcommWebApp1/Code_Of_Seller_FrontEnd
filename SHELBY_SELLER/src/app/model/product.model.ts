@@ -1,9 +1,9 @@
 import { FileHandle } from "./file-handke.model";
 
 export interface Product{
-    product_id: any;
-    seller_id:number;
-    productName:String;
+    productId: any;
+    id:number;
+    name:String;
     sellerEmailID:String;
     description:String,
     price : number,
