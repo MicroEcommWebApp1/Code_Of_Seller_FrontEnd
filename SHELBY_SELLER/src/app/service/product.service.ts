@@ -38,12 +38,12 @@ export class ProductService {
     
   }
 
-  public deleteProduct(product_id:number)
+  public deleteProduct(productId:number)
   {
-    return this.http.delete("http://localhost:8080/products/deleteProduct/"+product_id);
+    return this.http.delete("http://localhost:8080/products/deleteProduct/"+productId);
   }
 
-  public getProductDetailsById(product_id:any){
-    return this.http.get<Product>("http://localhost:8080/products/getProductDetailsById/"+product_id);
+  public getProductDetailsById(productId:any){
+    return this.http.get<Product>("http://localhost:8080/products/getProductDetailsById/"+productId);
   }
 }

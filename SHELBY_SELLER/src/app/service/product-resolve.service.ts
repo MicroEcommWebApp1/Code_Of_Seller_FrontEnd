@@ -13,7 +13,7 @@ export class ProductResolveService implements Resolve<Product>{
 
   constructor(private productservice:ProductService, private imageProcessingService:ImageProcessingService) { }
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):Observable<Product> {
-    const id=route.paramMap.get("product_id");
+    const id=route.paramMap.get("productId");
     if(id)
     {
       return this.productservice.getProductDetailsById(id)
@@ -28,9 +28,9 @@ export class ProductResolveService implements Resolve<Product>{
 
   getProductDetails(){
     return {
-     product_id:null,
-     seller_id:0, 
-     productName: '',
+     productId:null,
+     id:0, 
+     name: '',
      sellerEmailID:'',
     description: '',
     tags:'',

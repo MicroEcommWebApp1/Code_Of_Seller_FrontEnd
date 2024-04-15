@@ -1,6 +1,6 @@
 export interface order{
     orderId:number;
-    product_id:number;
+    productId:number;
     paymentId:number;
     seller_id:number;
     sellerEmailID:String;

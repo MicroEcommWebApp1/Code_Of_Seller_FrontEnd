@@ -20,8 +20,8 @@ export class AddproductComponent implements OnInit{
   registerDto!: Register;
   isNewProduct=true;
   product: Product={
-    product_id: null,
-    productName: '',
+    productId: null,
+    name: '',
     description: '',
     price: 0,
     quantity: 0,
@@ -31,7 +31,7 @@ export class AddproductComponent implements OnInit{
     thumbnail: '',
     productImages: [],
     sellerEmailID: '',
-    seller_id: 0,
+    id: 0,
     tags: ''
   }
 
@@ -43,13 +43,13 @@ export class AddproductComponent implements OnInit{
   ngOnInit(): void {
     this.product=this.activatedroute.snapshot.data['product'];
    
-    if(this.product && this.product.product_id){
+    if(this.product && this.product.productId){
       this.isNewProduct=false;
     }
 
     this.registerDto = JSON.parse(localStorage.getItem('registerDto') || '{}');
     this.product.sellerEmailID=this.registerDto.emailID;
-    this.product.seller_id=this.registerDto.id;
+    this.product.id=this.registerDto.id;
     console.log(this.product.sellerEmailID);
   
   }
