@@ -4,47 +4,31 @@
     <!-- Your main content goes here -->
   
     
-  
-  
+    <div class="charts">
+
+      <div class="charts-card">
+          <p class="chart-title">GENERATED REVENUE</p>
+         <span class="total-revenue">₹{{ totalRevenue }}</span>
+          <div id="bar-chart"></div>
+      </div></div>
     <div class="table-container mt-5">
   
-      <table mat-table [dataSource]="orderDetails" class="mat-elevation-z8">
+      <table mat-table [dataSource]="itemDetails" class="mat-elevation-z8">
   
         <!--- Note that these columns can be defined in any order.
                 The actual rendered columns are set as a property on the row definition" -->
   
         <!-- Position Column -->
         <ng-container matColumnDef="ORDERID">
-          <th mat-header-cell *matHeaderCellDef> ID </th>
+          <th mat-header-cell *matHeaderCellDef>ORDER_ID </th>
           <td mat-cell *matCellDef="let element"> {{element.orderId}} </td>
         </ng-container>
   
-        <!-- Name Column -->
-        <ng-container matColumnDef="PAYMENTID">
-          <th mat-header-cell *matHeaderCellDef>PAYMENTID</th>
-          <td mat-cell *matCellDef="let element"> {{element.paymentId}} </td>
-        </ng-container>
-  
-  
-  
-  
-        <ng-container matColumnDef="BUYER_NAME">
-          <th mat-header-cell *matHeaderCellDef>BUYER_NAME</th>
-          <td mat-cell *matCellDef="let element">{{element.buyerName}}
-            
-          </td>
-        </ng-container>
-
-        <ng-container matColumnDef="BUYER_MAIL">
-            <th mat-header-cell *matHeaderCellDef>BUYER_MAIL</th>
-            <td mat-cell *matCellDef="let element">{{element.email}}
-              
-            </td>
-          </ng-container>
+     
 
           <ng-container matColumnDef="ProductID">
             <th mat-header-cell *matHeaderCellDef>ProductID</th>
-            <td mat-cell *matCellDef="let element">{{element.product_id}}
+            <td mat-cell *matCellDef="let element">{{element.productId}}
               
             </td>
           </ng-container>
@@ -58,7 +42,7 @@
 
           <ng-container matColumnDef="PRICE">
             <th mat-header-cell *matHeaderCellDef>PRICE</th>
-            <td mat-cell *matCellDef="let element">{{element.price}}
+            <td mat-cell *matCellDef="let element">{{element.unitPrice}}
               
             </td>
           </ng-container>
@@ -70,25 +54,27 @@
             </td>
           </ng-container>
 
-          
-          <ng-container matColumnDef="TOTAL_AMT">
-            <th mat-header-cell *matHeaderCellDef>TOATL_AMT</th>
-            <td mat-cell *matCellDef="let element">{{element.totalAmount}}
+          <ng-container matColumnDef="CATEGORY">
+            <th mat-header-cell *matHeaderCellDef>CATEGORY</th>
+            <td mat-cell *matCellDef="let element">{{element.category}}
               
             </td>
           </ng-container>
 
           
+         
+
+          
           <ng-container matColumnDef="TOTAL_P_PRICE">
             <th mat-header-cell *matHeaderCellDef>TOTAL_P_PRICE</th>
-            <td mat-cell *matCellDef="let element">{{element.totalproductPrice}}
+            <td mat-cell *matCellDef="let element">{{element.totalProductPrice}}
               
             </td>
           </ng-container>
         <!-- Weight Column -->
         <ng-container matColumnDef="STATUS">
             <th mat-header-cell *matHeaderCellDef>STATUS</th>
-            <td mat-cell *matCellDef="let element">{{element.status}}
+            <td mat-cell *matCellDef="let element">payment success
               
             </td>
           </ng-container>
@@ -100,15 +86,5 @@
   
   </div>
 
-  <table class="table1">
  
-    <tfoot>
-      <tr>
-        <td colspan="12"></td>
-        <td class="title">Total Revenue :</td>
-        <td class="total-revenue" >{{ totalRevenue }}</td>
-        <td></td>
-      </tr>
-    </tfoot>
-  </table>
   

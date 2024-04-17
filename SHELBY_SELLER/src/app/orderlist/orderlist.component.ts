@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Register } from '../model/register.model';
-import { order } from '../model/order.model';
+import { Order, OrderItem } from '../model/order.model';
 import { OrderService } from '../service/order.service';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -16,8 +16,9 @@ export class OrderlistComponent implements OnInit {
 
   totalRevenue=0;
   registerDto!: Register;
-  orderDetails : order[]=[];
-  displayedColumns: string[] = ['ORDERID', 'PAYMENTID','BUYER_NAME','BUYER_MAIL','ProductID','P_NAME','PRICE','QTY','TOTAL_AMT','TOTAL_P_PRICE','STATUS'];
+ 
+  itemDetails:OrderItem[]=[];
+  displayedColumns: string[] = ['ORDERID','ProductID','P_NAME','PRICE','QTY','CATEGORY','TOTAL_P_PRICE','STATUS'];
   
 
   ngOnInit():void{
@@ -38,9 +39,9 @@ export class OrderlistComponent implements OnInit {
 
   
     fetchOrders() {
-      this.orderservice.getOrdersByEmail(this.registerDto.emailID).subscribe(
-        (cartItems:order[]) => {
-          this.orderDetails =cartItems;
+      this.orderservice.getOrderDetailsByEmail(this.registerDto.emailID).subscribe(
+        (cartItems:OrderItem[]) => {
+          this.itemDetails =cartItems;
           console.log(cartItems);
           this.calculateTotalRevenue();
         },
@@ -51,7 +52,7 @@ export class OrderlistComponent implements OnInit {
     }
   
     calculateTotalRevenue() {
-      this.totalRevenue = this.orderDetails.reduce((total, order) => total + order.totalAmount, 0);
+      this.totalRevenue = this.itemDetails.reduce((total, OrderItem) => total + OrderItem.totalProductPrice, 0);
     }
 
 }
