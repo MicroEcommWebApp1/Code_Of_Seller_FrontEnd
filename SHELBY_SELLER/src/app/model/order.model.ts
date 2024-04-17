@@ -1,21 +1,31 @@
-export interface order{
+
+
+export interface Order {
+    orderId: number;
+    paymentId: number;
+ 
+    buyerName: string;
+    email: string;
+    deliveryAddress: string;
+    phoneNo: number;
+    items: OrderItem[];
+    totalOrderAmount: number;
+    status: string;
+  }
+  
+  export interface OrderItem{
+    itemId: number;
     orderId:number;
-    productId:number;
-    paymentId:number;
-    seller_id:number;
-    sellerEmailID:String;
-    buyerName:String;
-    email:String;
-    phoneNo:number;
-    productName:String;
-    description:String,
-    price : number,
-    quantity: number,
-    category : String,
-    subcategory1:String,
-    subcategory2 : String,
-    thumbnail:String,
-    totalAmount:number;
-    totalproductPrice:number;
-    status:String;
-}
+    sellerEmailID: string;
+    seller_id: number;
+    productId: number;
+    productName: string;
+    thumbnail: string;
+    unitPrice: number;
+    quantity: number;
+    category: string;
+    subcategory1: string;
+    subcategory2: string;
+    totalProductPrice:number;
+  }
+  

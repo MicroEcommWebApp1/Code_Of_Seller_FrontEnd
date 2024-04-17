@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, throwError } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
+import { Order, OrderItem } from '../model/order.model';
 
 @Injectable({
   providedIn: 'root'
@@ -22,5 +23,9 @@ private handleError(error: any) {
   return throwError(error);
 
   
+}
+
+getOrderDetailsByEmail(sellerEmailID: String): Observable<OrderItem[]> {
+  return this.http.get<OrderItem[]>(`http://localhost:8086/sellerorderdetails/${sellerEmailID}`);
 }
 }
