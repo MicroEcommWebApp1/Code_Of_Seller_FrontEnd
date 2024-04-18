@@ -3,6 +3,7 @@
   /* Main content */
   .content {
     padding:20px;
+    background-image: url('../../assets/bg_image.jpg');
     
    
     display:flex;
@@ -43,11 +44,14 @@
 .content table th
 {
   color:black;
+  border: 1px solid #0e0c45; 
+  background-color: #cbdcec;
 }
 
 .content table td
 {
   color:black;
+  border: 1px solid #0e0c45; 
 }
 
 
