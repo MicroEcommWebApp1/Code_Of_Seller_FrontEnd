@@ -23,7 +23,7 @@
 
 
 .navbar {
-    background-color: #c2d6dd;
+    background-color: #253941;
     overflow: hidden;
     
     
@@ -34,11 +34,11 @@
 .navbar a {
     float: left;
     display: block;
-    color: white;
+ 
     text-align: center;
     padding: 14px 20px;
     text-decoration: none;
-    color:black;
+    color:rgb(226, 221, 221);
 }
 
 .navbar a:hover {
